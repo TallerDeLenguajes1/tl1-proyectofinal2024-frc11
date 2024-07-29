@@ -1,0 +1,5 @@
+C:\Tallerdelenguajes1\Proyecto Final - Franco Pizzi\tl1-proyectofinal2024-frc11\obj\Debug\net8.0\tl1-proyectofinal2024-frc11.GeneratedMSBuildEditorConfig.editorconfig
+C:\Tallerdelenguajes1\Proyecto Final - Franco Pizzi\tl1-proyectofinal2024-frc11\obj\Debug\net8.0\tl1-proyectofinal2024-frc11.AssemblyInfoInputs.cache
+C:\Tallerdelenguajes1\Proyecto Final - Franco Pizzi\tl1-proyectofinal2024-frc11\obj\Debug\net8.0\tl1-proyectofinal2024-frc11.AssemblyInfo.cs
+C:\Tallerdelenguajes1\Proyecto Final - Franco Pizzi\tl1-proyectofinal2024-frc11\obj\Debug\net8.0\tl1-proyectofinal2024-frc11.csproj.CoreCompileInputs.cache
+C:\Tallerdelenguajes1\Proyecto Final - Franco Pizzi\tl1-proyectofinal2024-frc11\obj\Debug\net8.0\tl1-proyectofinal2024-frc11.sourcelink.json
