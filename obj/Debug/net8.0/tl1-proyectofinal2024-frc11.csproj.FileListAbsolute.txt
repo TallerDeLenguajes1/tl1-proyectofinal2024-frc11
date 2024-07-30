@@ -3,3 +3,13 @@ C:\Tallerdelenguajes1\Proyecto Final - Franco Pizzi\tl1-proyectofinal2024-frc11\
 C:\Tallerdelenguajes1\Proyecto Final - Franco Pizzi\tl1-proyectofinal2024-frc11\obj\Debug\net8.0\tl1-proyectofinal2024-frc11.AssemblyInfo.cs
 C:\Tallerdelenguajes1\Proyecto Final - Franco Pizzi\tl1-proyectofinal2024-frc11\obj\Debug\net8.0\tl1-proyectofinal2024-frc11.csproj.CoreCompileInputs.cache
 C:\Tallerdelenguajes1\Proyecto Final - Franco Pizzi\tl1-proyectofinal2024-frc11\obj\Debug\net8.0\tl1-proyectofinal2024-frc11.sourcelink.json
+C:\Tallerdelenguajes1\Proyecto Final - Franco Pizzi\tl1-proyectofinal2024-frc11\bin\Debug\net8.0\tl1-proyectofinal2024-frc11.exe
+C:\Tallerdelenguajes1\Proyecto Final - Franco Pizzi\tl1-proyectofinal2024-frc11\bin\Debug\net8.0\tl1-proyectofinal2024-frc11.deps.json
+C:\Tallerdelenguajes1\Proyecto Final - Franco Pizzi\tl1-proyectofinal2024-frc11\bin\Debug\net8.0\tl1-proyectofinal2024-frc11.runtimeconfig.json
+C:\Tallerdelenguajes1\Proyecto Final - Franco Pizzi\tl1-proyectofinal2024-frc11\bin\Debug\net8.0\tl1-proyectofinal2024-frc11.dll
+C:\Tallerdelenguajes1\Proyecto Final - Franco Pizzi\tl1-proyectofinal2024-frc11\bin\Debug\net8.0\tl1-proyectofinal2024-frc11.pdb
+C:\Tallerdelenguajes1\Proyecto Final - Franco Pizzi\tl1-proyectofinal2024-frc11\obj\Debug\net8.0\tl1-proyectofinal2024-frc11.dll
+C:\Tallerdelenguajes1\Proyecto Final - Franco Pizzi\tl1-proyectofinal2024-frc11\obj\Debug\net8.0\refint\tl1-proyectofinal2024-frc11.dll
+C:\Tallerdelenguajes1\Proyecto Final - Franco Pizzi\tl1-proyectofinal2024-frc11\obj\Debug\net8.0\tl1-proyectofinal2024-frc11.pdb
+C:\Tallerdelenguajes1\Proyecto Final - Franco Pizzi\tl1-proyectofinal2024-frc11\obj\Debug\net8.0\tl1-proyectofinal2024-frc11.genruntimeconfig.cache
+C:\Tallerdelenguajes1\Proyecto Final - Franco Pizzi\tl1-proyectofinal2024-frc11\obj\Debug\net8.0\ref\tl1-proyectofinal2024-frc11.dll

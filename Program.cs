@@ -1,44 +1,83 @@
 ﻿using System.Text.Json;
 using System.Web;
-class Program
-{
-    static void Main()
-    {
-        var asciiArtService = new AsciiArtService();  
-        /*string asciiArt = await asciiArtService.GetAsciiArtAsync(text);
+using System.Threading.Tasks;
+using System.Net.Http;
+class Program{
 
-        if (asciiArt != null)
-        {
-            Console.WriteLine(asciiArt);
-        }*/  
-        string asciiArt = await asciiArtService.GetAsciiArtAsync("Football-Battle");
-        Console.WriteLine(asciiArt);
+     private static AsciiArtService _asciiArtService = new AsciiArtService();
+
+    public static async Task Main(string[] args)
+    {
         string nombreArchivo = "personajes.json"; 
         PersonajesJson personajesJson = new PersonajesJson();
-        List<Personaje> personajes;
+        List<Personaje> personajes = new List<Personaje>();
+        FabricaDePersonajes fabrica = new FabricaDePersonajes();
+        try
+        {
+            string mensajeASCII = "Football-War";
+            string art = await _asciiArtService.GetAsciiArtAsync(mensajeASCII);
+            Console.WriteLine(art);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+
         if (personajesJson.Existe(nombreArchivo))
         {
-            personajes = personajesJson.LeerPersonajes(nombreArchivo);
-            Console.WriteLine("Personajes cargados desde el archivo.");
+            Console.WriteLine("Se han encontrado personajes de archivo, desea crear nuevos o utilizarlos? \n 0-Nuevos \n1-Precargados");
+            int opcion = Convert.ToInt32(Console.ReadLine());
+            if (opcion == 0)
+            {
+                Console.WriteLine("Desea crear su personaje de forma manual o asignado de forma aleatoria?\n 0-Manual \n1-Aleatorio");
+                int opcion2 = Convert.ToInt32(Console.ReadLine());
+                if (opcion2 == 0)
+                {
+                    personajes.Add(fabrica.CrearPersonajeManual());
+                    for (int i = 0; i < 9; i++)
+                    {
+                        personajes.Add(fabrica.CrearPersonajeAleatorio());
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < 10; i++)
+                    {
+                        personajes.Add(fabrica.CrearPersonajeAleatorio());
+                    }
+                }
+                personajesJson.GuardarPersonajes(personajes, nombreArchivo);
+                Console.WriteLine("10 personajes generados y guardados en el archivo.");
+            }
+            else
+            {
+                personajes = personajesJson.LeerPersonajes(nombreArchivo);
+                Console.WriteLine("Personajes cargados desde el archivo.");
+            }
         }
         else
         {
-            personajes = new List<Personaje>();
-            Console.WriteLine("El archivo de personajes no existe. Se generarán nuevos personajes.");
-        }
-
-        if (personajes.Count == 0)
-        {
-            FabricaDePersonajes fabrica = new FabricaDePersonajes();
-            for (int i = 0; i < 10; i++)
-            {  
-                personajes.Add(fabrica.CrearPersonajeAleatorio());
+            Console.WriteLine("El archivo de personajes no existe. Se generarán nuevos personajes.\n");
+            Console.WriteLine("Desea crear su personaje de forma manual o asignado de forma aleatoria?\n 0-Manual \n1-Aleatorio");
+            int opcion2 = Convert.ToInt32(Console.ReadLine());
+            if (opcion2 == 0)
+            {
+                personajes.Add(fabrica.CrearPersonajeManual());
+                for (int i = 0; i < 9; i++)
+                {
+                    personajes.Add(fabrica.CrearPersonajeAleatorio());
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    personajes.Add(fabrica.CrearPersonajeAleatorio());
+                }
             }
             personajesJson.GuardarPersonajes(personajes, nombreArchivo);
             Console.WriteLine("10 personajes generados y guardados en el archivo.");
         }
-
-        // Mostrar los datos y características de los personajes cargados o generados
         MostrarPersonajes(personajes);
     }
 
@@ -61,19 +100,19 @@ public class Personaje{
         CaracteristicaPersonaje = caracteristicaPersonaje;
         DatosPersonaje = datosPersonaje;
     }
-    public void MostrarInformacion(Datos Datos, Caracteristicas Caracteristicas)
+   public void MostrarInformacion()
     {
-        Console.WriteLine($"Nombre: {Datos.Nombre} \n");
-        Console.WriteLine($"Apodo: {Datos.Apodo} \n");
-        Console.WriteLine($"Tipo: {Datos.Tipo} \n");
-        Console.WriteLine($"Fecha de Nacimiento: {Datos.FechaDeNacimiento.ToShortDateString()} \n");
-        Console.WriteLine($"Edad: {Datos.Edad} \n");
-        Console.WriteLine($"Velocidad: {Caracteristicas.Velocidad} \n");
-        Console.WriteLine($"Destreza: {Caracteristicas.Destreza} \n");
-        Console.WriteLine($"Fuerza: {Caracteristicas.Fuerza} \n");
-        Console.WriteLine($"Nivel: {Caracteristicas.Nivel} \n");
-        Console.WriteLine($"Armadura: {Caracteristicas.Armadura} \n");
-        Console.WriteLine($"Salud: {Caracteristicas.Salud} \n");
+        Console.WriteLine($"Nombre: {DatosPersonaje.Nombre}");
+        Console.WriteLine($"Apodo: {DatosPersonaje.Apodo}");
+        Console.WriteLine($"Tipo: {DatosPersonaje.Tipo}");
+        Console.WriteLine($"Fecha de Nacimiento: {DatosPersonaje.FechaNac.ToShortDateString()}");
+        Console.WriteLine($"Edad: {DatosPersonaje.Edad}");
+        Console.WriteLine($"Velocidad: {CaracteristicaPersonaje.Velocidad}");
+        Console.WriteLine($"Destreza: {CaracteristicaPersonaje.Destreza}");
+        Console.WriteLine($"Fuerza: {CaracteristicaPersonaje.Fuerza}");
+        Console.WriteLine($"Nivel: {CaracteristicaPersonaje.Nivel}");
+        Console.WriteLine($"Armadura: {CaracteristicaPersonaje.Armadura}");
+        Console.WriteLine($"Salud: {CaracteristicaPersonaje.Salud}");
     }
 }
 public class Caracteristicas{
@@ -124,28 +163,56 @@ public class FabricaDePersonajes
         return new Personaje(caracteristicas, datos);
     }
 
-    public Personaje CrearPersonajeManual()
+ public Personaje CrearPersonajeManual()
+{
+    string tipo = "";
+    while (true)
     {
         Console.WriteLine("Ingrese el tipo de personaje (G.O.A.T, ★★★★★, ★★★★, ★★★):");
-        string tipo = Console.ReadLine();
-        
-        Console.WriteLine("Ingrese el nombre del personaje:");
-        string nombre = Console.ReadLine();
-        
-        Console.WriteLine("Ingrese el apodo del personaje:");
-        string apodo = Console.ReadLine();
-        
-        Console.WriteLine("Ingrese la fecha de nacimiento del personaje (YYYY-MM-DD):");
-        DateTime fechaNac = DateTime.Parse(Console.ReadLine());
-        
-        Console.WriteLine("Ingrese la edad del personaje:");
-        int edad = int.Parse(Console.ReadLine());
-
-        Datos datos = new Datos(tipo, nombre, apodo, fechaNac, edad);
-        Caracteristicas caracteristicas = GenerarCaracteristicasAleatorias(tipo);
-        return new Personaje(caracteristicas, datos);
+        tipo = Console.ReadLine();
+        if (tipo == "G.O.A.T" || tipo == "★★★★★" || tipo == "★★★★" || tipo == "★★★")
+        {
+            break;
+        }
+        Console.WriteLine("Tipo inválido. Por favor, ingrese uno de los tipos válidos.");
     }
 
+    Console.WriteLine("Ingrese el nombre del personaje:");
+    string nombre = Console.ReadLine();
+
+    Console.WriteLine("Ingrese el apodo del personaje:");
+    string apodo = Console.ReadLine();
+
+    DateTime fechaNac;
+    while (true)
+    {
+        Console.WriteLine("Ingrese la fecha de nacimiento del personaje (YYYY-MM-DD):");
+        if (DateTime.TryParse(Console.ReadLine(), out fechaNac))
+        {
+            break;
+        }
+        Console.WriteLine("Fecha inválida. Por favor, ingrese una fecha en el formato correcto.");
+    }
+
+   int edad = CalcularEdad(fechaNac);
+    
+    Datos datos = new Datos(tipo, nombre, apodo, fechaNac, edad);
+    Caracteristicas caracteristicas = GenerarCaracteristicasAleatorias(tipo);
+    return new Personaje(caracteristicas, datos);
+
+}
+private int CalcularEdad(DateTime fechaNac)
+{
+    DateTime hoy = DateTime.Today;
+    int edad = hoy.Year - fechaNac.Year;
+    
+    if (fechaNac.Date > hoy.AddYears(-edad))
+    {
+        edad--;
+    }
+    
+    return edad;
+}
     private string GenerarTipoAleatorio()
     {
         int probabilidad = random.Next(0, 50);
@@ -372,57 +439,27 @@ public class HistorialJson
 //API de ascii art
 public class AsciiArtService
 {
-    private readonly string apiUrl = "http://artii.herokuapp.com/make?text=";
+    private readonly HttpClient _httpClient;
+
+    public AsciiArtService()
+    {
+        _httpClient = new HttpClient();
+    }
 
     public async Task<string> GetAsciiArtAsync(string text)
     {
-        using (HttpClient client = new HttpClient())
-        {
-            try
-            {
-                string url = $"{apiUrl}{Uri.EscapeDataString(text)}";
-                HttpResponseMessage response = await client.GetAsync(url);
-                response.EnsureSuccessStatusCode();
-                return await response.Content.ReadAsStringAsync();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error obteniendo arte ASCII: {ex.Message}");
-                return null;
-            }
-        }
-    }
+        string url = $"https://artii.herokuapp.com/make?text={Uri.EscapeDataString(text)}";
 
-    public async Task SaveAsciiArtToFileAsync(string text, string asciiArt, string filePath)
-    {
-        var apiResponse = new ApiResponse
-        {
-            Name = text,
-            AsciiArt = asciiArt
-        };
+        HttpResponseMessage response = await _httpClient.GetAsync(url);
 
-        string jsonString = JsonSerializer.Serialize(apiResponse, new JsonSerializerOptions { WriteIndented = true });
-
-        if (!File.Exists(filePath))
+        if (response.IsSuccessStatusCode)
         {
-            await File.WriteAllTextAsync(filePath, "[" + Environment.NewLine + jsonString + Environment.NewLine + "]");
+            return await response.Content.ReadAsStringAsync();
         }
         else
         {
-            string currentContent = await File.ReadAllTextAsync(filePath);
-            currentContent = currentContent.TrimEnd(']');
-            if (currentContent.Length > 1)
-            {
-                currentContent += "," + Environment.NewLine;
-            }
-            currentContent += jsonString + Environment.NewLine + "]";
-            await File.WriteAllTextAsync(filePath, currentContent);
+            string responseBody = await response.Content.ReadAsStringAsync();
+            throw new Exception($"Error al obtener el arte ASCII. Código de estado: {response.StatusCode}, Respuesta: {responseBody}");
         }
-    }
-
-    public class ApiResponse
-    {
-        public string Name { get; set; }
-        public string AsciiArt { get; set; }
     }
 }

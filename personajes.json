@@ -1,0 +1,172 @@
+[
+  {
+    "CaracteristicaPersonaje": {
+      "Velocidad": 10,
+      "Destreza": 4,
+      "Fuerza": 10,
+      "Nivel": 10,
+      "Armadura": 10,
+      "Salud": 100
+    },
+    "DatosPersonaje": {
+      "Tipo": "G.O.A.T",
+      "Nombre": "asda",
+      "Apodo": "das",
+      "FechaNac": "2003-12-12T00:00:00",
+      "Edad": 12
+    }
+  },
+  {
+    "CaracteristicaPersonaje": {
+      "Velocidad": 8,
+      "Destreza": 2,
+      "Fuerza": 3,
+      "Nivel": 8,
+      "Armadura": 6,
+      "Salud": 100
+    },
+    "DatosPersonaje": {
+      "Tipo": "\u2605\u2605\u2605\u2605",
+      "Nombre": "LEWANDOWSKI",
+      "Apodo": "LEWY",
+      "FechaNac": "1995-07-30T18:03:07.4400543-03:00",
+      "Edad": 27
+    }
+  },
+  {
+    "CaracteristicaPersonaje": {
+      "Velocidad": 10,
+      "Destreza": 5,
+      "Fuerza": 10,
+      "Nivel": 10,
+      "Armadura": 8,
+      "Salud": 100
+    },
+    "DatosPersonaje": {
+      "Tipo": "\u2605\u2605\u2605\u2605\u2605",
+      "Nombre": "MBAPPE",
+      "Apodo": "KIKI",
+      "FechaNac": "1998-12-20T00:00:00",
+      "Edad": 25
+    }
+  },
+  {
+    "CaracteristicaPersonaje": {
+      "Velocidad": 7,
+      "Destreza": 1,
+      "Fuerza": 3,
+      "Nivel": 2,
+      "Armadura": 6,
+      "Salud": 100
+    },
+    "DatosPersonaje": {
+      "Tipo": "\u2605\u2605\u2605",
+      "Nombre": "GRIEZMANN",
+      "Apodo": "GRIZI",
+      "FechaNac": "1994-07-30T18:03:07.4429422-03:00",
+      "Edad": 30
+    }
+  },
+  {
+    "CaracteristicaPersonaje": {
+      "Velocidad": 9,
+      "Destreza": 5,
+      "Fuerza": 7,
+      "Nivel": 5,
+      "Armadura": 10,
+      "Salud": 100
+    },
+    "DatosPersonaje": {
+      "Tipo": "\u2605\u2605\u2605\u2605",
+      "Nombre": "DE BRUYNE",
+      "Apodo": "KDB",
+      "FechaNac": "1991-07-30T18:03:07.4429455-03:00",
+      "Edad": 24
+    }
+  },
+  {
+    "CaracteristicaPersonaje": {
+      "Velocidad": 6,
+      "Destreza": 4,
+      "Fuerza": 10,
+      "Nivel": 10,
+      "Armadura": 9,
+      "Salud": 100
+    },
+    "DatosPersonaje": {
+      "Tipo": "\u2605\u2605\u2605\u2605\u2605",
+      "Nombre": "VINICIUS",
+      "Apodo": "VINI",
+      "FechaNac": "2000-07-12T00:00:00",
+      "Edad": 24
+    }
+  },
+  {
+    "CaracteristicaPersonaje": {
+      "Velocidad": 8,
+      "Destreza": 5,
+      "Fuerza": 10,
+      "Nivel": 10,
+      "Armadura": 8,
+      "Salud": 100
+    },
+    "DatosPersonaje": {
+      "Tipo": "\u2605\u2605\u2605\u2605\u2605",
+      "Nombre": "MBAPPE",
+      "Apodo": "KIKI",
+      "FechaNac": "1998-12-20T00:00:00",
+      "Edad": 25
+    }
+  },
+  {
+    "CaracteristicaPersonaje": {
+      "Velocidad": 7,
+      "Destreza": 5,
+      "Fuerza": 8,
+      "Nivel": 7,
+      "Armadura": 3,
+      "Salud": 100
+    },
+    "DatosPersonaje": {
+      "Tipo": "\u2605\u2605\u2605\u2605",
+      "Nombre": "KANE",
+      "Apodo": "HURRIKANE",
+      "FechaNac": "2004-07-30T18:03:07.4429503-03:00",
+      "Edad": 18
+    }
+  },
+  {
+    "CaracteristicaPersonaje": {
+      "Velocidad": 7,
+      "Destreza": 5,
+      "Fuerza": 7,
+      "Nivel": 10,
+      "Armadura": 10,
+      "Salud": 100
+    },
+    "DatosPersonaje": {
+      "Tipo": "\u2605\u2605\u2605\u2605\u2605",
+      "Nombre": "HAALAND",
+      "Apodo": "THE TERMINATOR",
+      "FechaNac": "2000-07-21T00:00:00",
+      "Edad": 23
+    }
+  },
+  {
+    "CaracteristicaPersonaje": {
+      "Velocidad": 6,
+      "Destreza": 5,
+      "Fuerza": 2,
+      "Nivel": 2,
+      "Armadura": 3,
+      "Salud": 100
+    },
+    "DatosPersonaje": {
+      "Tipo": "\u2605\u2605\u2605",
+      "Nombre": "LUKAKU",
+      "Apodo": "TRONKAKU",
+      "FechaNac": "1994-07-30T18:03:07.4429514-03:00",
+      "Edad": 33
+    }
+  }
+]
