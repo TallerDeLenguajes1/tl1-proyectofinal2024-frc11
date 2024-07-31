@@ -1,0 +1,20 @@
+[
+  {
+    "CaracteristicaPersonaje": {
+      "Velocidad": 10,
+      "Destreza": 5,
+      "Fuerza": 8,
+      "Nivel": 8,
+      "Armadura": 10,
+      "Salud": 21
+    },
+    "DatosPersonaje": {
+      "Tipo": "\u2605\u2605\u2605\u2605\u2605",
+      "Nombre": "MBAPPE",
+      "Apodo": "KIKI",
+      "FechaNac": "1998-12-20T00:00:00",
+      "Edad": 25
+    },
+    "EsPropio": false
+  }
+]

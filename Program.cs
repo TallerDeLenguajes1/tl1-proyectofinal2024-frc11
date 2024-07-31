@@ -1,39 +1,34 @@
-﻿using System.Text.Json;
+﻿using System;
+using System.Text.Json;
 using System.Web;
 using System.Threading.Tasks;
 using System.Net.Http;
-class Program{
+using System.Collections.Generic;
 
-     private static AsciiArtService _asciiArtService = new AsciiArtService();
-
+class Program
+{
     public static async Task Main(string[] args)
     {
-        string nombreArchivo = "personajes.json"; 
+        string nombreArchivo = "personajes.json";
+        string archivoHistorialGanadores = "historialGanadores.json";
         PersonajesJson personajesJson = new PersonajesJson();
         List<Personaje> personajes = new List<Personaje>();
         FabricaDePersonajes fabrica = new FabricaDePersonajes();
-        try
-        {
-            string mensajeASCII = "Football-War";
-            string art = await _asciiArtService.GetAsciiArtAsync(mensajeASCII);
-            Console.WriteLine(art);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error: {ex.Message}");
-        }
+        List<Personaje> historialGanadores = personajesJson.LeerHistorialGanadores(archivoHistorialGanadores);
 
         if (personajesJson.Existe(nombreArchivo))
         {
             Console.WriteLine("Se han encontrado personajes de archivo, desea crear nuevos o utilizarlos? \n 0-Nuevos \n1-Precargados");
-            int opcion = Convert.ToInt32(Console.ReadLine());
+            int opcion = int.Parse(Console.ReadLine());
             if (opcion == 0)
             {
                 Console.WriteLine("Desea crear su personaje de forma manual o asignado de forma aleatoria?\n 0-Manual \n1-Aleatorio");
-                int opcion2 = Convert.ToInt32(Console.ReadLine());
+                int opcion2 = int.Parse(Console.ReadLine());
                 if (opcion2 == 0)
                 {
-                    personajes.Add(fabrica.CrearPersonajeManual());
+                    var personajePropio = fabrica.CrearPersonajeManual();
+                    personajePropio.EsPropio = true;
+                    personajes.Add(personajePropio);
                     for (int i = 0; i < 9; i++)
                     {
                         personajes.Add(fabrica.CrearPersonajeAleatorio());
@@ -41,7 +36,10 @@ class Program{
                 }
                 else
                 {
-                    for (int i = 0; i < 10; i++)
+                    var personajePropio = fabrica.CrearPersonajeAleatorio();
+                    personajePropio.EsPropio = true;
+                    personajes.Add(personajePropio);
+                    for (int i = 0; i < 9; i++)
                     {
                         personajes.Add(fabrica.CrearPersonajeAleatorio());
                     }
@@ -59,10 +57,12 @@ class Program{
         {
             Console.WriteLine("El archivo de personajes no existe. Se generarán nuevos personajes.\n");
             Console.WriteLine("Desea crear su personaje de forma manual o asignado de forma aleatoria?\n 0-Manual \n1-Aleatorio");
-            int opcion2 = Convert.ToInt32(Console.ReadLine());
+            int opcion2 = int.Parse(Console.ReadLine());
             if (opcion2 == 0)
             {
-                personajes.Add(fabrica.CrearPersonajeManual());
+                var personajePropio = fabrica.CrearPersonajeManual();
+                personajePropio.EsPropio = true;
+                personajes.Add(personajePropio);
                 for (int i = 0; i < 9; i++)
                 {
                     personajes.Add(fabrica.CrearPersonajeAleatorio());
@@ -70,7 +70,10 @@ class Program{
             }
             else
             {
-                for (int i = 0; i < 10; i++)
+                var personajePropio = fabrica.CrearPersonajeAleatorio();
+                personajePropio.EsPropio = true;
+                personajes.Add(personajePropio);
+                for (int i = 0; i < 9; i++)
                 {
                     personajes.Add(fabrica.CrearPersonajeAleatorio());
                 }
@@ -78,7 +81,53 @@ class Program{
             personajesJson.GuardarPersonajes(personajes, nombreArchivo);
             Console.WriteLine("10 personajes generados y guardados en el archivo.");
         }
+
         MostrarPersonajes(personajes);
+
+        // Crear enfrentamientos
+        Pelea pelea = new Pelea();
+        while (personajes.Count > 1)
+        {
+            List<(Personaje, Personaje)> enfrentamientos = CrearEnfrentamientos(personajes);
+
+            // Mostrar enfrentamientos y ejecutar peleas
+            Console.WriteLine("Enfrentamientos:");
+            foreach (var (atacante, defensor) in enfrentamientos)
+            {
+                Console.WriteLine($"{atacante.DatosPersonaje.Nombre} vs {defensor.DatosPersonaje.Nombre}");
+                
+                if (atacante.EsPropio)
+                {
+                    Console.WriteLine("Es tu turno. Deseas insultar a tu oponente? (S/N)");
+                    string respuesta = Console.ReadLine();
+                    if (respuesta?.ToUpper() == "S")
+                    {
+                        string insulto = await APIinsultos.GetInsulto();
+                        Console.WriteLine($"Tu insulto: {insulto}");
+                    }
+                }
+                var ganador = pelea.Pelear(atacante, defensor);
+                if (ganador != null)
+                {
+                    personajes.Remove(atacante == ganador ? defensor : atacante);
+                    if ((atacante == ganador ? defensor : atacante).EsPropio)
+                    {
+                        Console.WriteLine("Tu personaje fue eliminado.");
+                    }
+                }
+            }
+        }
+
+        // Determinar y mostrar el ganador final
+        if (personajes.Count == 1)
+        {
+            var ganadorFinal = personajes[0];
+            historialGanadores.Add(ganadorFinal);
+            Console.WriteLine($"¡El ganador del Balón de Oro es {ganadorFinal.DatosPersonaje.Nombre}!");
+            personajesJson.GuardarHistorialGanadores(historialGanadores, archivoHistorialGanadores);
+        }
+
+        MostrarHistorialGanadores(historialGanadores);
     }
 
     static void MostrarPersonajes(List<Personaje> personajes)
@@ -89,12 +138,33 @@ class Program{
             Console.WriteLine("-----------------------------");
         }
     }
+
+    static List<(Personaje, Personaje)> CrearEnfrentamientos(List<Personaje> personajes)
+    {
+        List<(Personaje, Personaje)> enfrentamientos = new List<(Personaje, Personaje)>();
+        for (int i = 0; i < personajes.Count; i += 2)
+        {
+            if (i + 1 < personajes.Count)
+            {
+                enfrentamientos.Add((personajes[i], personajes[i + 1]));
+            }
+        }
+        return enfrentamientos;
+    }
+
+    static void MostrarHistorialGanadores(List<Personaje> historialGanadores)
+    {
+        Console.WriteLine("Historial de ganadores:");
+        foreach (var ganador in historialGanadores)
+        {
+            Console.WriteLine(ganador.DatosPersonaje.Nombre);
+        }
+    }
 }
-
-
 public class Personaje{
     public Caracteristicas CaracteristicaPersonaje{get; private set;}
     public Datos DatosPersonaje{ get;private set; }
+    public bool EsPropio { get; set; } // para identificar si es propio 
 
     public Personaje(Caracteristicas caracteristicaPersonaje, Datos datosPersonaje){
         CaracteristicaPersonaje = caracteristicaPersonaje;
@@ -375,6 +445,34 @@ public class PersonajesJson
             return false;
         }
     }
+     public void GuardarHistorialGanadores(List<Personaje> historialGanadores, string nombreArchivo)
+    {
+        string jsonString = JsonSerializer.Serialize(historialGanadores, new JsonSerializerOptions { WriteIndented = true });
+        File.WriteAllText(nombreArchivo, jsonString);
+        Console.WriteLine("Historial de ganadores guardado en " + nombreArchivo);
+    }
+
+    public List<Personaje> LeerHistorialGanadores(string nombreArchivo)
+{
+    if (File.Exists(nombreArchivo) && new FileInfo(nombreArchivo).Length > 0)
+    {
+        string jsonString = File.ReadAllText(nombreArchivo);
+        try
+        {
+            return JsonSerializer.Deserialize<List<Personaje>>(jsonString) ?? new List<Personaje>();
+        }
+        catch (JsonException)
+        {
+            Console.WriteLine("Error al deserializar el archivo JSON. Asegúrate de que el contenido sea válido.");
+            return new List<Personaje>();
+        }
+    }
+    else
+    {
+        Console.WriteLine("Archivo no encontrado o vacío.");
+        return new List<Personaje>();
+    }
+}
 }
 
 //Persistencia de datos (Lectura y guardado de Json) 
@@ -435,7 +533,70 @@ public class HistorialJson
         return File.Exists(nombreArchivo) && new FileInfo(nombreArchivo).Length > 0;
     }
 }
+//Class de la pelea
+public class Pelea
+{
+    private readonly Random random = new Random();
 
+    public Personaje Pelear(Personaje p1, Personaje p2)
+    {
+        int saludI1 = p1.CaracteristicaPersonaje.Salud;
+        int saludI2 = p2.CaracteristicaPersonaje.Salud;
+        while (p1.CaracteristicaPersonaje.Salud > 0 && p2.CaracteristicaPersonaje.Salud > 0)
+        {
+            Atacar(p1, p2);
+            if (p2.CaracteristicaPersonaje.Salud <= 0)
+            {
+                Console.WriteLine($"{p2.DatosPersonaje.Nombre} ha sido derrotado.");
+                p1.CaracteristicaPersonaje.Salud = saludI1 + 10; 
+                return p1;
+            }
+
+            Atacar(p2, p1);
+            if (p1.CaracteristicaPersonaje.Salud <= 0)
+            {
+                Console.WriteLine($"{p1.DatosPersonaje.Nombre} ha sido derrotado.");
+                p2.CaracteristicaPersonaje.Salud = saludI2 + 10; 
+                return p2;
+            }
+        }
+        return null; //evita fallos
+    }
+
+    private void Atacar(Personaje ataca, Personaje defiende)
+    {
+        int ataque = ataca.CaracteristicaPersonaje.Destreza * ataca.CaracteristicaPersonaje.Fuerza * ataca.CaracteristicaPersonaje.Nivel;
+        int efectividad = random.Next(1, 100);
+        int defensa = defiende.CaracteristicaPersonaje.Armadura * defiende.CaracteristicaPersonaje.Velocidad;
+        const int constAjuste = 500;
+        int daño = ((ataque * efectividad) - defensa) / constAjuste;
+        defiende.CaracteristicaPersonaje.Salud -= daño;
+        if (efectividad >= 50)
+        {
+            Console.WriteLine("Ataque crítico! \n");
+        }
+        Console.WriteLine($"{ataca.DatosPersonaje.Nombre} ataca a {defiende.DatosPersonaje.Nombre} y causa {daño} de daño. Salud restante de {defiende.DatosPersonaje.Nombre}: {defiende.CaracteristicaPersonaje.Salud}");
+        Console.WriteLine("Presiona cualquier tecla para continuar...");
+        Console.ReadKey();
+    }
+}
+
+
+//API de insultos 
+public class APIinsultos{
+     private class InsultoResponse{
+            public string ? Insult { get; set; }
+        }
+        private static readonly HttpClient client=new HttpClient();
+        public static async Task<string> GetInsulto(){
+            var url="https://evilinsult.com/generate_insult.php?lang=es&type=json";
+            HttpResponseMessage response=await client.GetAsync(url);
+            response.EnsureSuccessStatusCode();
+            string responseBody=await response.Content.ReadAsStringAsync();
+            var insultoData=System.Text.Json.JsonSerializer.Deserialize<InsultoResponse>(responseBody);
+            return insultoData?.Insult??"¡Insulto no disponible!";
+        }
+ }
 //API de ascii art
 public class AsciiArtService
 {
