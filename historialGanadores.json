@@ -16,5 +16,59 @@
       "Edad": 25
     },
     "EsPropio": false
+  },
+  {
+    "CaracteristicaPersonaje": {
+      "Velocidad": 10,
+      "Destreza": 4,
+      "Fuerza": 9,
+      "Nivel": 9,
+      "Armadura": 10,
+      "Salud": 140
+    },
+    "DatosPersonaje": {
+      "Tipo": "G.O.A.T",
+      "Nombre": "frc",
+      "Apodo": "FRCC",
+      "FechaNac": "2003-10-08T00:00:00",
+      "Edad": 20
+    },
+    "EsPropio": true
+  },
+  {
+    "CaracteristicaPersonaje": {
+      "Velocidad": 10,
+      "Destreza": 5,
+      "Fuerza": 10,
+      "Nivel": 9,
+      "Armadura": 10,
+      "Salud": 140
+    },
+    "DatosPersonaje": {
+      "Tipo": "G.O.A.T",
+      "Nombre": "CRISTIANO",
+      "Apodo": "CR7",
+      "FechaNac": "1985-02-05T00:00:00",
+      "Edad": 39
+    },
+    "EsPropio": false
+  },
+  {
+    "CaracteristicaPersonaje": {
+      "Velocidad": 10,
+      "Destreza": 5,
+      "Fuerza": 10,
+      "Nivel": 9,
+      "Armadura": 10,
+      "Salud": 140
+    },
+    "DatosPersonaje": {
+      "Tipo": "G.O.A.T",
+      "Nombre": "CRISTIANO",
+      "Apodo": "CR7",
+      "FechaNac": "1985-02-05T00:00:00",
+      "Edad": 39
+    },
+    "EsPropio": false
   }
 ]

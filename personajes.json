@@ -1,82 +1,64 @@
 [
   {
     "CaracteristicaPersonaje": {
-      "Velocidad": 9,
-      "Destreza": 5,
+      "Velocidad": 10,
+      "Destreza": 4,
       "Fuerza": 9,
       "Nivel": 9,
-      "Armadura": 9,
+      "Armadura": 10,
       "Salud": 100
     },
     "DatosPersonaje": {
       "Tipo": "G.O.A.T",
-      "Nombre": "carrasca ",
-      "Apodo": "ss",
-      "FechaNac": "1122-12-12T00:00:00",
-      "Edad": 901
+      "Nombre": "frc",
+      "Apodo": "FRCC",
+      "FechaNac": "2003-10-08T00:00:00",
+      "Edad": 20
     },
     "EsPropio": true
   },
   {
     "CaracteristicaPersonaje": {
-      "Velocidad": 7,
-      "Destreza": 2,
-      "Fuerza": 6,
-      "Nivel": 5,
+      "Velocidad": 2,
+      "Destreza": 3,
+      "Fuerza": 9,
+      "Nivel": 4,
       "Armadura": 6,
-      "Salud": 100
-    },
-    "DatosPersonaje": {
-      "Tipo": "\u2605\u2605\u2605",
-      "Nombre": "CARRASCAL",
-      "Apodo": "CARRASCA",
-      "FechaNac": "2005-07-31T17:39:27.0049787-03:00",
-      "Edad": 24
-    },
-    "EsPropio": false
-  },
-  {
-    "CaracteristicaPersonaje": {
-      "Velocidad": 10,
-      "Destreza": 4,
-      "Fuerza": 4,
-      "Nivel": 3,
-      "Armadura": 10,
       "Salud": 100
     },
     "DatosPersonaje": {
       "Tipo": "\u2605\u2605\u2605",
       "Nombre": "COURTOIS",
       "Apodo": "THIBAUT",
-      "FechaNac": "1997-07-31T17:39:27.0049819-03:00",
-      "Edad": 28
+      "FechaNac": "1992-05-11T00:00:00",
+      "Edad": 32
     },
     "EsPropio": false
   },
   {
     "CaracteristicaPersonaje": {
-      "Velocidad": 7,
+      "Velocidad": 10,
       "Destreza": 5,
-      "Fuerza": 9,
-      "Nivel": 6,
-      "Armadura": 4,
+      "Fuerza": 10,
+      "Nivel": 9,
+      "Armadura": 10,
       "Salud": 100
     },
     "DatosPersonaje": {
-      "Tipo": "\u2605\u2605\u2605\u2605",
-      "Nombre": "DE BRUYNE",
-      "Apodo": "KDB",
-      "FechaNac": "2004-07-31T17:39:27.005091-03:00",
-      "Edad": 21
+      "Tipo": "G.O.A.T",
+      "Nombre": "CRISTIANO",
+      "Apodo": "CR7",
+      "FechaNac": "1985-02-05T00:00:00",
+      "Edad": 39
     },
     "EsPropio": false
   },
   {
     "CaracteristicaPersonaje": {
-      "Velocidad": 9,
-      "Destreza": 5,
-      "Fuerza": 2,
-      "Nivel": 7,
+      "Velocidad": 10,
+      "Destreza": 1,
+      "Fuerza": 7,
+      "Nivel": 8,
       "Armadura": 4,
       "Salud": 100
     },
@@ -84,43 +66,79 @@
       "Tipo": "\u2605\u2605\u2605",
       "Nombre": "GRIEZMANN",
       "Apodo": "GRIZI",
-      "FechaNac": "1993-07-31T17:39:27.0050923-03:00",
-      "Edad": 24
+      "FechaNac": "1991-03-21T00:00:00",
+      "Edad": 33
     },
     "EsPropio": false
   },
   {
     "CaracteristicaPersonaje": {
       "Velocidad": 5,
-      "Destreza": 3,
-      "Fuerza": 7,
-      "Nivel": 8,
-      "Armadura": 4,
-      "Salud": 100
-    },
-    "DatosPersonaje": {
-      "Tipo": "\u2605\u2605\u2605\u2605",
-      "Nombre": "DE BRUYNE",
-      "Apodo": "KDB",
-      "FechaNac": "2002-07-31T17:39:27.0050938-03:00",
-      "Edad": 20
-    },
-    "EsPropio": false
-  },
-  {
-    "CaracteristicaPersonaje": {
-      "Velocidad": 5,
-      "Destreza": 4,
-      "Fuerza": 4,
-      "Nivel": 5,
+      "Destreza": 5,
+      "Fuerza": 10,
+      "Nivel": 4,
       "Armadura": 6,
       "Salud": 100
     },
     "DatosPersonaje": {
       "Tipo": "\u2605\u2605\u2605\u2605",
-      "Nombre": "LEWANDOWSKI",
-      "Apodo": "LEWY",
-      "FechaNac": "2003-07-31T17:39:27.0050941-03:00",
+      "Nombre": "KANE",
+      "Apodo": "0 TITLES",
+      "FechaNac": "1993-07-28T00:00:00",
+      "Edad": 31
+    },
+    "EsPropio": false
+  },
+  {
+    "CaracteristicaPersonaje": {
+      "Velocidad": 4,
+      "Destreza": 1,
+      "Fuerza": 1,
+      "Nivel": 5,
+      "Armadura": 8,
+      "Salud": 100
+    },
+    "DatosPersonaje": {
+      "Tipo": "\u2605\u2605\u2605",
+      "Nombre": "LUKAKU",
+      "Apodo": "TRONKAKU",
+      "FechaNac": "1993-05-13T00:00:00",
+      "Edad": 31
+    },
+    "EsPropio": false
+  },
+  {
+    "CaracteristicaPersonaje": {
+      "Velocidad": 3,
+      "Destreza": 2,
+      "Fuerza": 1,
+      "Nivel": 10,
+      "Armadura": 2,
+      "Salud": 100
+    },
+    "DatosPersonaje": {
+      "Tipo": "\u2605\u2605\u2605",
+      "Nombre": "GRIEZMANN",
+      "Apodo": "GRIZI",
+      "FechaNac": "1991-03-21T00:00:00",
+      "Edad": 33
+    },
+    "EsPropio": false
+  },
+  {
+    "CaracteristicaPersonaje": {
+      "Velocidad": 3,
+      "Destreza": 4,
+      "Fuerza": 3,
+      "Nivel": 7,
+      "Armadura": 7,
+      "Salud": 100
+    },
+    "DatosPersonaje": {
+      "Tipo": "\u2605\u2605\u2605",
+      "Nombre": "COURTOIS",
+      "Apodo": "THIBAUT",
+      "FechaNac": "1992-05-11T00:00:00",
       "Edad": 32
     },
     "EsPropio": false
@@ -130,16 +148,16 @@
       "Velocidad": 9,
       "Destreza": 4,
       "Fuerza": 10,
-      "Nivel": 8,
-      "Armadura": 8,
+      "Nivel": 10,
+      "Armadura": 9,
       "Salud": 100
     },
     "DatosPersonaje": {
       "Tipo": "\u2605\u2605\u2605\u2605\u2605",
-      "Nombre": "VINICIUS",
-      "Apodo": "VINI",
-      "FechaNac": "2000-07-12T00:00:00",
-      "Edad": 24
+      "Nombre": "HAALAND",
+      "Apodo": "ANDROIDE",
+      "FechaNac": "2000-07-21T00:00:00",
+      "Edad": 23
     },
     "EsPropio": false
   },
@@ -147,35 +165,17 @@
     "CaracteristicaPersonaje": {
       "Velocidad": 10,
       "Destreza": 5,
-      "Fuerza": 8,
-      "Nivel": 8,
-      "Armadura": 10,
-      "Salud": 100
-    },
-    "DatosPersonaje": {
-      "Tipo": "\u2605\u2605\u2605\u2605\u2605",
-      "Nombre": "MBAPPE",
-      "Apodo": "KIKI",
-      "FechaNac": "1998-12-20T00:00:00",
-      "Edad": 25
-    },
-    "EsPropio": false
-  },
-  {
-    "CaracteristicaPersonaje": {
-      "Velocidad": 5,
-      "Destreza": 3,
-      "Fuerza": 4,
-      "Nivel": 7,
-      "Armadura": 3,
+      "Fuerza": 7,
+      "Nivel": 9,
+      "Armadura": 4,
       "Salud": 100
     },
     "DatosPersonaje": {
       "Tipo": "\u2605\u2605\u2605\u2605",
       "Nombre": "KANE",
-      "Apodo": "HURRIKANE",
-      "FechaNac": "1998-07-31T17:39:27.0052091-03:00",
-      "Edad": 23
+      "Apodo": "0 TITLES",
+      "FechaNac": "1993-07-28T00:00:00",
+      "Edad": 31
     },
     "EsPropio": false
   }
