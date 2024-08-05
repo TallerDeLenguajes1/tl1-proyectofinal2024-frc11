@@ -70,5 +70,23 @@
       "Edad": 39
     },
     "EsPropio": false
+  },
+  {
+    "CaracteristicaPersonaje": {
+      "Velocidad": 9,
+      "Destreza": 5,
+      "Fuerza": 9,
+      "Nivel": 9,
+      "Armadura": 5,
+      "Salud": 140
+    },
+    "DatosPersonaje": {
+      "Tipo": "\u2605\u2605\u2605\u2605",
+      "Nombre": "DE BRUYNE",
+      "Apodo": "KDB",
+      "FechaNac": "1991-06-28T00:00:00",
+      "Edad": 33
+    },
+    "EsPropio": false
   }
 ]
