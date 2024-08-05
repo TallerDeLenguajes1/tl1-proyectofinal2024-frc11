@@ -26,55 +26,46 @@
                     var personajePropio = fabrica.CrearPersonajeManual();
                     personajePropio.EsPropio = true;
                     personajes.Add(personajePropio);
-                    for (int i = 0; i < 9; i++)
-                    {
+                    for (int i = 0; i < 9; i++){
                         personajes.Add(fabrica.CrearPersonajeAleatorio());
                     }
                 }
-                else
-                {
+                else{
                     var personajePropio = fabrica.CrearPersonajeAleatorio();
                     personajePropio.EsPropio = true;
                     personajes.Add(personajePropio);
-                    for (int i = 0; i < 9; i++)
-                    {
+                    for (int i = 0; i < 9; i++){
                         personajes.Add(fabrica.CrearPersonajeAleatorio());
                     }
                 }
                 personajesJson.GuardarPersonajes(personajes, nombreArchivo);
                 Console.WriteLine("10 personajes generados y guardados en el archivo.");
             }
-            else
-            {
+            else{
                 personajes = personajesJson.LeerPersonajes(nombreArchivo);
                 Console.WriteLine("Personajes cargados desde el archivo.");
             }
         }
-        else
-        {
+        else{
             Console.WriteLine("El archivo de personajes no existe. Se generarán nuevos personajes.\n");
             string ? opcion2;
                 do{
                     Console.WriteLine("Desea crear su personaje de forma manual o asignado de forma aleatoria? (M/A)");
                     opcion2 = Console.ReadLine();
                 }while(opcion2?.ToUpper()!="A" && opcion2?.ToUpper()!="M");
-            if (opcion2?.ToUpper() == "M")
-            {
+            if (opcion2?.ToUpper() == "M"){
                 var personajePropio = fabrica.CrearPersonajeManual();
                 personajePropio.EsPropio = true;
                 personajes.Add(personajePropio);
-                for (int i = 0; i < 9; i++)
-                {
+                for (int i = 0; i < 9; i++){
                     personajes.Add(fabrica.CrearPersonajeAleatorio());
                 }
             }
-            else
-            {
+            else{
                 var personajePropio = fabrica.CrearPersonajeAleatorio();
                 personajePropio.EsPropio = true;
                 personajes.Add(personajePropio);
-                for (int i = 0; i < 9; i++)
-                {
+                for (int i = 0; i < 9; i++){
                     personajes.Add(fabrica.CrearPersonajeAleatorio());
                 }
             }
@@ -84,41 +75,34 @@
 
         MostrarPersonajes(personajes);
         Pelea pelea = new Pelea();
-        while (personajes.Count > 1)
-        {
+        while (personajes.Count > 1){
             List<(Personaje, Personaje)> enfrentamientos = CrearEnfrentamientos(personajes);
             Console.WriteLine("Enfrentamientos:");
-            foreach (var (atacante, defensor) in enfrentamientos)
-            {
+            foreach (var (atacante, defensor) in enfrentamientos){
                 Console.WriteLine($"{atacante.DatosPersonaje.Nombre} vs {defensor.DatosPersonaje.Nombre}");
                 
-                if (atacante.EsPropio)
-                {   
+                if (atacante.EsPropio){   
                     string ? respuesta;
                     do{
                         Console.WriteLine("Es tu turno. Deseas contar un chiste a tu oponente? (S/N)");
                         respuesta= Console.ReadLine();
                     }while(respuesta?.ToUpper()!="S" && respuesta?.ToUpper()!="N");
-                    if (respuesta?.ToUpper() == "S")
-                    {
+                    if (respuesta?.ToUpper() == "S"){
                         string chiste = await APIChistes.GetChiste();
                             Console.WriteLine($"Tu chiste: {chiste}");
                     }
                 }
                 var ganador = pelea.Pelear(atacante, defensor);
-                if (ganador != null)
-                {
+                if (ganador != null){
                     personajes.Remove(atacante == ganador ? defensor : atacante);
-                    if ((atacante == ganador ? defensor : atacante).EsPropio)
-                    {
+                    if ((atacante == ganador ? defensor : atacante).EsPropio){
                         Console.WriteLine("Tu personaje fue eliminado.");
                     }
                 }
             }
         }
 
-        if (personajes.Count == 1)
-        {
+        if (personajes.Count == 1){
             var ganadorFinal = personajes[0];
             historialGanadores.Add(ganadorFinal);
             Console.WriteLine($"¡El ganador del Balón de Oro es {ganadorFinal.DatosPersonaje.Nombre}!");
@@ -128,33 +112,26 @@
         MostrarHistorialGanadores(historialGanadores);
     }
 
-    static void MostrarPersonajes(List<Personaje> personajes)
-    {
-        foreach (var personaje in personajes)
-        {
+    static void MostrarPersonajes(List<Personaje> personajes){
+        foreach (var personaje in personajes){
             personaje.MostrarInformacion();
             Console.WriteLine("-----------------------------");
         }
     }
 
-    static List<(Personaje, Personaje)> CrearEnfrentamientos(List<Personaje> personajes)
-    {
+    static List<(Personaje, Personaje)> CrearEnfrentamientos(List<Personaje> personajes){
         List<(Personaje, Personaje)> enfrentamientos = new List<(Personaje, Personaje)>();
-        for (int i = 0; i < personajes.Count; i += 2)
-        {
-            if (i + 1 < personajes.Count)
-            {
+        for (int i = 0; i < personajes.Count; i += 2){
+            if (i + 1 < personajes.Count){
                 enfrentamientos.Add((personajes[i], personajes[i + 1]));
             }
         }
         return enfrentamientos;
     }
 
-    static void MostrarHistorialGanadores(List<Personaje> historialGanadores)
-    {
+    static void MostrarHistorialGanadores(List<Personaje> historialGanadores){
         Console.WriteLine("Historial de ganadores:");
-        foreach (var ganador in historialGanadores)
-        {
+        foreach (var ganador in historialGanadores){
             Console.WriteLine($"Nombre:{ganador.DatosPersonaje.Nombre}");
             Console.WriteLine($"Tipo:{ganador.DatosPersonaje.Tipo}");
         }

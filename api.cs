@@ -1,9 +1,7 @@
 using System.Text.Json;
 //API de bromas 
-public class APIChistes
-{
-    private class ChisteResponse
-    {
+public class APIChistes{
+    private class ChisteResponse{
         public bool error { get; set; }
         public string ? category { get; set; }
         public string ? type { get; set; }
@@ -16,8 +14,7 @@ public class APIChistes
         public string ? lang { get; set; }
     }
 
-    public class Flags
-    {
+    public class Flags{
         public bool nsfw { get; set; }
         public bool religious { get; set; }
         public bool political { get; set; }
@@ -28,20 +25,17 @@ public class APIChistes
 
     private static readonly HttpClient client = new HttpClient();
 
-    public static async Task<string> GetChiste()
-    {
+    public static async Task<string> GetChiste(){
         var url = "https://v2.jokeapi.dev/joke/Any?lang=es";
         HttpResponseMessage response = await client.GetAsync(url);
         response.EnsureSuccessStatusCode();
         string responseBody = await response.Content.ReadAsStringAsync();
         var chisteData = JsonSerializer.Deserialize<ChisteResponse>(responseBody);
 
-        if (chisteData != null && !chisteData.error)
-        {
+        if (chisteData != null && !chisteData.error){
             return chisteData.type == "twopart" ? $"{chisteData.setup} - {chisteData.delivery}" : chisteData.joke;
         }
-        else
-        {
+        else{
             return "¡Chiste no disponible!";
         }
     }

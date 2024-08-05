@@ -7,8 +7,7 @@ public class Personaje{
         CaracteristicaPersonaje = caracteristicaPersonaje;
         DatosPersonaje = datosPersonaje;
     }
-   public void MostrarInformacion()
-    {
+   public void MostrarInformacion(){
         Console.WriteLine($"Nombre: {DatosPersonaje.Nombre}");
         Console.WriteLine($"Apodo: {DatosPersonaje.Apodo}");
         Console.WriteLine($"Tipo: {DatosPersonaje.Tipo}");
@@ -58,27 +57,22 @@ public class Datos{
 
 }
 
-public class FabricaDePersonajes
-{
+public class FabricaDePersonajes{
     private readonly Random random = new Random();
 
-    public Personaje CrearPersonajeAleatorio()
-    {
+    public Personaje CrearPersonajeAleatorio(){
         string tipo = GenerarTipoAleatorio();
         Caracteristicas caracteristicas = GenerarCaracteristicasAleatorias(tipo);
         Datos datos = GenerarDatosPersonaje(tipo);
         return new Personaje(caracteristicas, datos);
     }
 
- public Personaje CrearPersonajeManual()
-{
+ public Personaje CrearPersonajeManual(){
     string ? tipo = "";
-    while (true)
-    {
+    while (true){
         Console.WriteLine("Ingrese el tipo de personaje (G.O.A.T, ★★★★★, ★★★★, ★★★):");
         tipo = Console.ReadLine();
-        if (tipo == "G.O.A.T" || tipo == "★★★★★" || tipo == "★★★★" || tipo == "★★★")
-        {
+        if (tipo == "G.O.A.T" || tipo == "★★★★★" || tipo == "★★★★" || tipo == "★★★"){
             break;
         }
         Console.WriteLine("Tipo inválido. Por favor, ingrese uno de los tipos válidos.");
@@ -91,11 +85,9 @@ public class FabricaDePersonajes
     string ? apodo = Console.ReadLine();
 
     DateTime fechaNac;
-    while (true)
-    {
+    while (true){
         Console.WriteLine("Ingrese la fecha de nacimiento del personaje (AAAA-MM-DD):");
-        if (DateTime.TryParse(Console.ReadLine(), out fechaNac))
-        {
+        if (DateTime.TryParse(Console.ReadLine(), out fechaNac)){
             break;
         }
         Console.WriteLine("Fecha inválida. Por favor, ingrese una fecha en el formato correcto.");
@@ -108,43 +100,34 @@ public class FabricaDePersonajes
     return new Personaje(caracteristicas, datos);
 
 }
-private int CalcularEdad(DateTime fechaNac)
-{
+private int CalcularEdad(DateTime fechaNac){
     DateTime hoy = DateTime.Today;
     int edad = hoy.Year - fechaNac.Year;
     
-    if (fechaNac.Date > hoy.AddYears(-edad))
-    {
+    if (fechaNac.Date > hoy.AddYears(-edad)){
         edad--;
     }
     
     return edad;
 }
-    private string GenerarTipoAleatorio()
-    {
+    private string GenerarTipoAleatorio(){
         int probabilidad = random.Next(0, 50);
-        if (probabilidad == 0)
-        {
+        if (probabilidad == 0){
             return "G.O.A.T";
         }
-        else if (probabilidad < 10)
-        {
+        else if (probabilidad < 10){
             return "★★★★★";
         }
-        else if (probabilidad < 25)
-        {
+        else if (probabilidad < 25){
             return "★★★★";
         }
-        else
-        {
+        else{
             return "★★★";
         }
     }
 
-    private Caracteristicas GenerarCaracteristicasAleatorias(string tipo)
-    {
-        switch (tipo)
-        {
+    private Caracteristicas GenerarCaracteristicasAleatorias(string tipo){
+        switch (tipo){
             case "G.O.A.T":
                 return new Caracteristicas(
                     random.Next(9, 11), // Velocidad
@@ -182,10 +165,8 @@ private int CalcularEdad(DateTime fechaNac)
         }
     }
 
-    public Datos GenerarDatosPersonaje(string tipo)
-    {
-        switch (tipo)
-        {
+    public Datos GenerarDatosPersonaje(string tipo){
+        switch (tipo){
             case "G.O.A.T":
                 return GenerarDatosGOAT();
             case "★★★★★":
@@ -199,11 +180,9 @@ private int CalcularEdad(DateTime fechaNac)
         }
     }
 
-    private Datos GenerarDatosGOAT()
-    {
+    private Datos GenerarDatosGOAT(){
         int probabilidad = random.Next(0, 3);
-        switch (probabilidad)
-        {
+        switch (probabilidad){
             case 0:
                 return new Datos("G.O.A.T", "MESSI", "LA PULGUITA", new DateTime(1987, 6, 24), 36);
             case 1:
@@ -213,11 +192,9 @@ private int CalcularEdad(DateTime fechaNac)
         }
     }
 
-    private Datos GenerarDatos5Estrellas()
-{
+    private Datos GenerarDatos5Estrellas(){
     int probabilidad = random.Next(0, 4);
-    switch (probabilidad)
-    {
+    switch (probabilidad){
         case 0:
             return new Datos("★★★★★", "MBAPPE", "KIKI", new DateTime(1998, 12, 20), 25);
         case 1:
@@ -229,11 +206,9 @@ private int CalcularEdad(DateTime fechaNac)
     }
 }
 
-private Datos GenerarDatos4Estrellas()
-{
+private Datos GenerarDatos4Estrellas(){
     int probabilidad = random.Next(0, 4);
-    switch (probabilidad)
-    {
+    switch (probabilidad){
         case 0:
             return new Datos("★★★★", "LEWANDOWSKI", "LEWY", new DateTime(1988, 8, 21), 35);
         case 1:
@@ -245,11 +220,9 @@ private Datos GenerarDatos4Estrellas()
     }
 }
 
-private Datos GenerarDatos3Estrellas()
-{
+private Datos GenerarDatos3Estrellas(){
     int probabilidad = random.Next(0, 4);
-    switch (probabilidad)
-    {
+    switch (probabilidad){
         case 0:
             return new Datos("★★★", "LUKAKU", "TRONKAKU", new DateTime(1993, 5, 13), 31);
         case 1:
